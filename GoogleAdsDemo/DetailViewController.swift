@@ -11,7 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    //This instance will display the banner in the UI
+    var bannerView: GoogleAdView = GoogleAdView()
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -26,6 +27,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureView()
+        addBannerViewToView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +41,14 @@ class DetailViewController: UIViewController {
             configureView()
         }
     }
-
+    func addBannerViewToView() {
+        // Set the frame for BannerView
+        bannerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50)
+        // Add banner view to the main UI
+        view.addSubview(bannerView)
+        // Do the initial set up for banner ads
+        bannerView.initializeBannerView(viewController: self)
+    }
 
 }
 
